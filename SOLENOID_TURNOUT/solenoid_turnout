@@ -1,0 +1,20 @@
+//Macro to control solenoid turnouts
+  #define SOLENOID_PULSE 5 //5 mSec
+  #define SOLENOIDTURNOUT(id,pc,pt,desc,ali,shadow)\
+  PIN_TURNOUT(id,0,desc)\
+  ALIAS(ali,id)\
+  PIN_TURNOUT(shadow,0,HIDDEN)\
+  DONE\
+  ONCLOSE(id)\
+  SET(pc)\
+  DELAY(SOLENOID_PULSE)\
+  RESET(pc)\
+  CLOSE(shadow)\
+  DONE\
+  ONTHROW(id)\
+  SET(pt)\
+  DELAY(SOLENOID_PULSE)\
+  RESET(pt)\
+  THROW(shadow)\
+  DONE
+
