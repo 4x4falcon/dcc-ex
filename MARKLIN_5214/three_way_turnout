@@ -1,0 +1,14 @@
+#define CLOSE_CENTER(id_left, id_right)\
+  CLOSE(id_left)\
+  CLOSE(id_right) //\
+  DONE
+
+#define THROW_LEFT(id_left, id_right)\
+  CLOSE_CENTER(id_left, id_right)\
+  THROW(id_left) //\
+  DONE
+
+#define THROW_RIGHT(id_left, id_right)\
+  CLOSE_CENTER(id_left, id_right)\
+  THROW(id_right) //\
+  DONE
