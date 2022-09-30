@@ -10,5 +10,4 @@ MARKLIN_5214
 	macro to control Marklin 5214 three way turnouts from EX-RAIL
 		needs SOLENOID_TURNOUT as well
 
-test 3
 
