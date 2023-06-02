@@ -1,0 +1,14 @@
+#define DCC_SIGNAL_THREE (id, addr_main, addr_main_sub, addr_amber, addr_amber_sub)\
+  DCC_SIGNAL(id, addr_main, addr_main_sub)\
+  ONRED(id)\
+    DEACTIVATE(addr_amber, addr_amber_sub)\
+  DONE\
+  ONGREEN(id)\
+    DEACTIVATE(addr_amber, addr_amber_sub)\
+  DONE\
+  ONAMBER(id)\
+    ACTIVATE(addr_main, addr_main_sub)\
+    ACTIVATE(addr_amber, addr_amber_sub)\
+  DONE
+
+
