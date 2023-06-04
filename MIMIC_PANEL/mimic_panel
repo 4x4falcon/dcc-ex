@@ -1,0 +1,44 @@
+// First pass, create the button watching loop
+
+#ifdef TWO_PIN_MIMIC
+#define CLEVER(turnout, button, route_ind_close, route_ind_throw) \
+    IF(button) \
+       IFCLOSED(turnout) THROW(turnout) ENDIF \
+    ELSE \
+      IF(-button) IFTHROWN(turnout) CLOSE(turnout) ENDIF \
+    ENDIF
+
+#endif
+#ifdef ONE_PIN_MIMIC
+#define CLEVER(turnout, button, route_ind_close) \
+    IF(button) \
+       IFCLOSED(turnout) THROW(turnout) ENDIF \
+    ELSE \
+      IF(-button) IFTHROWN(turnout) CLOSE(turnout) ENDIF \
+    ENDIF
+#endif
+
+AUTOSTART SEQUENCE(1) 
+#include "myClever.h"
+FOLLOW(1)
+#undef CLEVER
+
+// Now replace the clever macro so it creates the ON handlers 
+#ifdef TWO_PIN_MIMIC
+#define CLEVER(turnout, button, route_ind_close, route_ind_throw) \
+      ONTHROW(turnout) RESET(route_ind_close) SET(route_ind_throw) DONE \
+      ONCLOSE(turnout) RESET(route_ind_throw) SET(route_ind_close) DONE
+#endif
+
+#ifdef ONE_PIN_MIMIC
+#define CLEVER(turnout, button, route_ind) \
+      ONTHROW(turnout) SET(route_ind) DONE \
+      ONCLOSE(turnout) RESET(route_ind) DONE
+#endif
+
+// Pass 2 create the ON handlers 
+#include "myClever.h"
+
+//This sneaky and dirty trick (including the same list more than once with different macro definitions) is exactly how EXRAIL works its magic for all its commands. 
+
+
