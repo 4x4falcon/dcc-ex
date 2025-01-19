@@ -1,0 +1,14 @@
+#define MASSOTH(id) \
+VIRTUAL_TURNOUT(id,"My turnout " #id) \
+ONTHROW(id) \
+  PARSE("<a " #id " 0 0 1>") \
+  DELAY(250) \
+  PARSE("<a " #id " 0 0 0>") \
+  DONE\
+ONCLOSE(id) \
+﻿﻿﻿  PARSE("<a " #id " 0 1 1>") \
+  DELAY(250) \
+  PARSE("<a " #id " 0 1 0>") \
+  DONE
+
+
