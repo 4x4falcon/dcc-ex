@@ -1,5 +1,5 @@
-#define MASSOTH(id) \
-VIRTUAL_TURNOUT(id,"My turnout " #id) \
+#define MASSOTH(desc, id) \
+VIRTUAL_TURNOUT(id,#desc "  " #id) \
 ONTHROW(id) \
   PARSE("<a " #id " 0 0 1>") \
   DELAY(250) \
